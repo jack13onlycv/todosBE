@@ -6,8 +6,7 @@
 - [x] Logging with middleware
 - [x] Cors and dotenv usage
 
-**API**
-
+# API:
 **GET** /todos/?(page=1&limit=10) returns all todos
 
 **GET** /todos/:id return one todo by id
