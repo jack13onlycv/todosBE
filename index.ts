@@ -9,8 +9,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import router from './routes/todos';
 import getTime from './additional/getTime';
+import ResponseCodes from './enums/enum-http-codes';
 
 const app = express();
+const port = process.env.PORT || '3000';
 
 app.use(cors({
   origin: '*',
@@ -27,7 +29,7 @@ app.use((req, res, next) => {
 app.use('/todos', router);
 
 app.get('*', (req, res) => {
-  res.status(404);
+  res.status(ResponseCodes.NOT_FOUND);
   res.send('Page not found!');
 });
 
@@ -42,4 +44,4 @@ mongoose.connect(
 
 mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-app.listen(3000, () => console.log('Server is listening on port 3000!'));
+app.listen(port, () => console.log(`Server is listening on port ${port}!`));
